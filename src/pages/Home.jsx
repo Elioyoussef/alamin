@@ -13,14 +13,14 @@ import Amin from '../assets/images/alamin.png'
 import CarouselOne from '../assets/images/carousel-one.png'
 import CarouselTwo from '../assets/images/carousel-two.png'
 import CarouselThree from '../assets/images/carousel-three.png'
-
+import CalendarImage from '../assets/images/calendar.png'
 
 
 const Home = () => {
   return (
     <div className='flex align-top gap-4 py-5'>
       <div>
-        Calendar
+        <img src={CalendarImage} />
       </div>
       <div className='flex flex-col gap-7'>
         <Card title='اجتماعيات' link='/social'>
