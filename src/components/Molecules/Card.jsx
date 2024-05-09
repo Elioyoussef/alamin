@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import leftArrow from '../../assets/icons/left-arrow.svg'
 const Card = ({title, link, children}) => {
+  const elio = console.log('elio');
   return (
     <div className='rounded-xl shadow-cardShadow w-[471px] h-auto'>
         <div className='px-5 py-5 w-full '>
