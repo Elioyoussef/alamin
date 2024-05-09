@@ -1,8 +1,8 @@
 import React from 'react'
 // Component not fully structured and done !!!
-const ImageCard = ({image}) => {
+const ImageCard = ({ image }) => {
   return (
-   <div className='w-[471px] h-[360px] bg-cover bg-center bg-no-repeat rounded-xl'style={{ backgroundImage: `url(${image})` }}></div>
+    <div className='max-w-[471px] h-[360px] bg-cover bg-center bg-no-repeat rounded-xl w-full' style={{ backgroundImage: `url(${image})` }}></div>
   )
 }
 

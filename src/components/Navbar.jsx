@@ -18,19 +18,17 @@ import social from '../assets/icons/social.svg';
 import socialActive from '../assets/icons/socialActive.svg';
 const Navbar = () => {
   return (
-    <div className='max-w-[1920px] mx-auto'>
-        <div className=' bg-[#B99E9E0F] p-2'>
-        <ul className='flex justify-between items-center'>
-                <LinkIcon path="/" label="نظرة عامة" icon={home} activeIcon={homeActive}/>
-                <LinkIcon path="/calendar" label="التقويم" icon={calendar} activeIcon={calendarActive}/>
-                <LinkIcon path="/social" label="التواصل الإجتماعي" icon={social} activeIcon={socialActive} />
-                <LinkIcon path="/mission" label="المهام" icon={mission} activeIcon={missionActive} />
-                <LinkIcon path="/daily-monitoring" label="الرصد اليومي" icon={monitoring} activeIcon={monitoringActive} />
-                <LinkIcon path="/visuals" label="المرئيات" icon={media} activeIcon={mediaActive} />
-                <LinkIcon path="/initiatives" label="المبادرات" icon={heartHand} activeIcon={heartHandActive} />
-                <LinkIcon path="/committees" label="اللجان" icon={committees} activeIcon={committeesActive} />
-            </ul>
-        </div>
+    <div className=' bg-[#B99E9E0F] py-2 px-4 rounded-xl'>
+      <ul className='flex justify-between items-center'>
+        <LinkIcon path="/" label="نظرة عامة" icon={home} activeIcon={homeActive} />
+        <LinkIcon path="/calendar" label="التقويم" icon={calendar} activeIcon={calendarActive} />
+        <LinkIcon path="/social" label="التواصل الإجتماعي" icon={social} activeIcon={socialActive} />
+        <LinkIcon path="/mission" label="المهام" icon={mission} activeIcon={missionActive} />
+        <LinkIcon path="/daily-monitoring" label="الرصد اليومي" icon={monitoring} activeIcon={monitoringActive} />
+        <LinkIcon path="/visuals" label="المرئيات" icon={media} activeIcon={mediaActive} />
+        <LinkIcon path="/initiatives" label="المبادرات" icon={heartHand} activeIcon={heartHandActive} />
+        <LinkIcon path="/committees" label="اللجان" icon={committees} activeIcon={committeesActive} />
+      </ul>
     </div>
   )
 }
