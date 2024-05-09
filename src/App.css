@@ -1,4 +1,42 @@
-/* .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+@font-face {
+  font-family: 'Lama Sans';
+  src: url('assets/fonts/LamaSans-Medium.eot');
+  src: url('assets/fonts/LamaSans-Medium.eot?#iefix') format('embedded-opentype'),
+      url('assets/fonts/LamaSans-Medium.woff2') format('woff2'),
+      url('assets/fonts/LamaSans-Medium.woff') format('woff'),
+      url('assets/fonts/LamaSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lama Sans';
+  src: url('assets/fonts/LamaSans-Bold.eot');
+  src: url('assets/fonts/LamaSans-Bold.eot?#iefix') format('embedded-opentype'),
+      url('assets/fonts/LamaSans-Bold.woff2') format('woff2'),
+      url('assets/fonts/LamaSans-Bold.woff') format('woff'),
+      url('assets/fonts/LamaSans-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lama Sans';
+  src: url('assets/fonts/LamaSans-Regular.eot');
+  src: url('assets/fonts/LamaSans-Regular.eot?#iefix') format('embedded-opentype'),
+      url('assets/fonts/LamaSans-Regular.woff2') format('woff2'),
+      url('assets/fonts/LamaSans-Regular.woff') format('woff'),
+      url('assets/fonts/LamaSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+body{
+  font-family: 'Lama Sans' !important;
+}
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
   top: unset !important;
   left: 50% !important;
   background-color: #CFD0E1 !important;
@@ -10,4 +48,4 @@
 }
 .swiper-pagination-bullet-active {
   background: #32477A !important;
-} */
+}

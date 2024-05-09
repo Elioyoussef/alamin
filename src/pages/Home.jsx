@@ -3,13 +3,14 @@ import Card from '../components/Molecules/Card'
 import ApprovalCard from '../components/Molecules/ApprovalCard'
 import EventsCard from '../components/Molecules/EventsCard'
 import ImageCard from '../components/Molecules/ImageCard'
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation, Pagination } from 'swiper/modules';
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import Diagram from '../assets/images/diagram.svg'
 import Amin from '../assets/images/alamin.png'
+import CarouselOne from '../assets/images/carousel-one.png'
 import CarouselTwo from '../assets/images/carousel-two.png'
 import CarouselThree from '../assets/images/carousel-three.png'
 import CalendarImage from '../assets/images/calendar.png'
@@ -41,7 +42,7 @@ const Home = () => {
           <ImageCard image={Amin} />
           <Card title='الفيديو والصور' link='/media'>
             <div className='max-w-[372px] mx-auto w-full pt-10 pb-[77px]'>
-              {/* <Swiper
+              <Swiper
                 modules={[Navigation, Pagination]}
                 navigation
                 pagination={{ clickable: true }}
@@ -51,7 +52,7 @@ const Home = () => {
                 <SwiperSlide><img src={CarouselTwo} alt={CarouselTwo} /></SwiperSlide>
                 <SwiperSlide><img src={CarouselTwo} alt={CarouselTwo} /></SwiperSlide>
                 <SwiperSlide><img src={CarouselThree} alt={CarouselThree} /></SwiperSlide>
-              </Swiper> */}
+              </Swiper>
             </div>
           </Card>
         </div>
