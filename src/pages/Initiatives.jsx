@@ -4,6 +4,8 @@ import HorizontalCard from '../components/Molecules/HorizontalCard'
 import Table from '../components/Organisms/Table'
 import StatusBadge from '../components/Molecules/StatusBadge'
 import Download from '../components/Atoms/Download'
+import clock from '../assets/icons/clock-icon.svg';
+import finished from '../assets/icons/finished-icon.svg';
 
 const Initiatives = () => {
   const columns = [
@@ -30,8 +32,8 @@ const Initiatives = () => {
         <Dropdown className='max-w-[100px] w-full' />
       </div>
       <div className='flex gap-5 items-center pb-6'>
-        <HorizontalCard title='مبادرة منتهية' status='pending' number='23' percentage='-8%' />
-        <HorizontalCard title='مبادرة جارية' status='done' number='12' percentage='+45%' />
+        <HorizontalCard title='مبادرة منتهية' status='pending' number='23' percentage='-8%' icon={clock} />
+        <HorizontalCard title='مبادرة جارية' status='done' number='12' percentage='+45%' icon={finished} />
       </div>
       <div>
         <Table title="المبادرات" data={data} columns={columns} />

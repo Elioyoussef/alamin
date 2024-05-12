@@ -1,16 +1,11 @@
 import React from 'react'
-import clock from '../../assets/icons/clock-icon.svg';
-import finished from '../../assets/icons/finished-icon.svg';
-const HorizontalCard = ({ status, title, number, percentage }) => {
+const HorizontalCard = ({ title, number, percentage, icon }) => {
     return (
         <div className='border-2 border-[#1C1A1A1A] rounded-xl w-full'>
             <div className='px-6 py-5'>
                 <div className='flex gap-5 pb-3 items-center'>
                     <div className='max-w-14 w-full'>
-                        {status === 'pending' ?
-                            <img src={clock} alt={title} /> :
-                            <img src={finished} alt={title} />
-                        }
+                        <img src={icon} alt={title} />
                     </div>
                     <p className='text-2xl text-[#2E357D] font-bold font-lama'>{title}</p>
                 </div>

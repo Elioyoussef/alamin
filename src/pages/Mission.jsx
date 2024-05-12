@@ -3,6 +3,8 @@ import Dropdown from '../components/Atoms/Dropdown'
 import HorizontalCard from '../components/Molecules/HorizontalCard'
 import Table from '../components/Organisms/Table'
 import StatusBadge from '../components/Molecules/StatusBadge'
+import clock from '../assets/icons/clock-icon.svg';
+import finished from '../assets/icons/finished-icon.svg';
 const Mission = () => {
   const columns = [
     { Header: 'المهمة', accessor: 'title', isSortable: false },
@@ -26,8 +28,8 @@ const Mission = () => {
         <Dropdown className='max-w-[100px] w-full' />
       </div>
       <div className='flex gap-5 items-center pb-6'>
-        <HorizontalCard title='مهمة جارية' status='pending' number='34' percentage='-8%' />
-        <HorizontalCard title='مهمة منجزة' status='done' number='45' percentage='+45%' />
+        <HorizontalCard title='مهمة جارية' status='pending' number='34' percentage='-8%' icon={clock} />
+        <HorizontalCard title='مهمة منجزة' status='done' number='45' percentage='+45%' icon={finished} />
       </div>
       <div>
         <Table title="سجل مهام المكتب الإعلامي لسمو الأمين" data={data} columns={columns} />
