@@ -26,7 +26,7 @@ const Home = () => {
         </div>
         <div className='flex flex-col gap-7'>
           <Card title='اجتماعيات' link='/social'>
-            <div className='py-10 flex items-top justify-between'>
+            <div className='py-10 flex items-top justify-between gap-2'>
               <ApprovalCard number='30' title='موافقة داخلية' type='internal' />
               <ApprovalCard number='22' title='موافقة داخلية' type='external' />
             </div>
