@@ -13,7 +13,7 @@ const StatusBadge = ({ status }) => {
             <div className='max-w-3.5 ml-2'>
                 <img src={icon} alt={text} className="block w-full" />
             </div>
-            <span className={`${textColor} text-sm`}>{text}</span>
+            <span className={`${textColor} text-sm font-light`}>{text}</span>
         </div>
     )
 }

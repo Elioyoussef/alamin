@@ -1,95 +1,54 @@
-import React, { useState } from 'react'
-import StatusBadge from '../Molecules/StatusBadge'
-const TasksTable = () => {
-    const allTasks = [
-        { id: 1, title: "مهمة واحد", status: "done" },
-        { id: 2, title: "مهمة اثنين", status: "done" },
-        { id: 3, title: "مهمة ثلاثة", status: "pending" },
-        { id: 4, title: "مهمة أربعة", status: "pending" },
-        { id: 5, title: "مهمة خمسة", status: "pending" },
-        { id: 6, title: "مهمة ستة", status: "done" },
-        { id: 7, title: "مهمة سبعة", status: "done" },
-        { id: 8, title: "مهمة ثمانية", status: "pending" },
-        { id: 9, title: "مهمة تسعة", status: "done" }
-    ];
-    const [tasks, setTasks] = useState(allTasks.slice(0, 6));
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
-    const totalTasks = allTasks.length;
-    const totalPages = Math.ceil(totalTasks / itemsPerPage);
+import React from 'react';
 
-    const sortTasks = () => {
-        const sortedTasks = [...tasks];
-        if (sortDirection === 'ascending' || sortDirection === 'none') {
-            sortedTasks.sort((a, b) => a.status.localeCompare(b.status));
-            setSortDirection('descending');
-        } else {
-            sortedTasks.sort((a, b) => b.status.localeCompare(a.status));
-            setSortDirection('ascending');
+const TasksTable = ({ data, columns, searchTerm, sortConfig, setSortConfig }) => {
+    const filteredData = data.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    const sortedData = filteredData.sort((a, b) => {
+        if (sortConfig.key) {
+            const isReversed = sortConfig.direction === 'descending' ? -1 : 1;
+            return isReversed * a[sortConfig.key].localeCompare(b[sortConfig.key]);
         }
-        setTasks(sortedTasks.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+        return 0;
+    });
+    const computedColumns = columns.map(column => ({
+        ...column,
+        width: column.width || (columns.length === 2 ? (column.accessor === 'title' ? 'w-4/5' : 'w-1/5') : 'w-auto')
+    }));
+    const handleSort = (key) => {
+        setSortConfig({ key, direction: sortConfig.key === key && sortConfig.direction === 'ascending' ? 'descending' : 'ascending' });
     };
 
-    const [sortDirection, setSortDirection] = useState('none');
-
-    const goToNextPage = () => {
-        const nextPage = currentPage + 1;
-        if (nextPage <= totalPages) {
-            setCurrentPage(nextPage);
-            setTasks(allTasks.slice((nextPage - 1) * itemsPerPage, nextPage * itemsPerPage));
-        }
-    };
-
-    const goToPrevPage = () => {
-        const prevPage = currentPage - 1;
-        if (prevPage > 0) {
-            setCurrentPage(prevPage);
-            setTasks(allTasks.slice((prevPage - 1) * itemsPerPage, prevPage * itemsPerPage));
-        }
-        console.log(currentPage)
-    };
-    const disabled = currentPage === 1;
     return (
-        <div className="overflow-hidden overflow-x-auto border border-[#F3F3F3] rounded-lg">
-            <table className="min-w-full text-sm divide-y divide-[#EAEBF2]">
-                <thead className="bg-gray-50">
-                    <tr>
-                        <th scope="col" className="w-4/5 px-6 py-3 text-right text-xs font-medium text-[#585958] uppercase tracking-wider">
-                            المهمة
+        <table className="min-w-full text-sm divide-y divide-gray-300">
+            <thead className="bg-[#FCFCFC]">
+                <tr>
+                    {computedColumns.map(column => (
+                        <th key={column.accessor}
+                            className={`${column.width} px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider text-right cursor-pointer`}
+                            onClick={() => column.isSortable && handleSort(column.accessor)}>
+                            {column.Header}
+                            {column.isSortable && sortConfig && sortConfig.key === column.accessor && (
+                                <span className={`inline-block mr-2 transform ${sortConfig.direction === 'ascending' ? '' : 'rotate-180'}`}>
+                                    ↓
+                                </span>
+                            )}
                         </th>
-                        <th scope="col" className="w-1/5 px-6 py-3 text-right text-xs font-medium text-[#585958] uppercase tracking-wider cursor-pointer" onClick={sortTasks}>
-                            الحالة
-                            <span className={`inline-block mr-2 transform ${sortDirection === 'ascending' ? 'rotate-180' : ''}`}>
-                                ↓
-                            </span>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-[#F3F3F3]">
-                    {tasks.map((task) => (
-                        <tr key={task.id}>
-                            <td className="px-6 py-4 whitespace-nowrap text-right text-[#1D1E1D] font-semibold text-sm">
-                                {task.title}
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-right">
-                                <StatusBadge status={task.status} />
-                            </td>
-                        </tr>
                     ))}
-                </tbody>
-            </table>
-            <div className="flex justify-between items-center p-4">
-                <button onClick={goToPrevPage} className={`border rounded-lg ${disabled ? 'border-gray-400 text-gray-400' : 'border-[#1C1A1A80] text-[#1C1A1A]'} text-sm py-2 px-3 font-bold`}>
-                    <span className="inline-block transform rotate-180 me-2 text-opacity-0">❯</span>
-                    السابق
-                </button>
-                <button onClick={goToNextPage} className={`border rounded-lg ${disabled ? 'border-gray-400 text-gray-400' : 'border-[#1C1A1A80] text-[#1C1A1A]'} text-sm py-2 px-3 font-bold`}>
-                    التالي
-                    <span className="inline-block transform ms-2 text-opacity-0">❯</span>
-                </button>
-            </div>
-        </div>
+                </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-[#F3F3F3]">
+                {sortedData.map((item, index) => (
+                    <tr key={index}>
+                        {computedColumns.map(column => (
+                            <td key={column.accessor} className={`${column.width} px-6 py-4 text-wrap text-[#1D1E1D] font-semibold text-sm`}>
+                                {column.render ? column.render(item[column.accessor]) : item[column.accessor]}
+                            </td>
+                        ))}
+                    </tr>
+                ))}
+            </tbody>
+        </table>
     );
-}
+};
 
-export default TasksTable
+export default TasksTable;

@@ -19,7 +19,7 @@ import socialActive from '../assets/icons/socialActive.svg';
 const Navbar = () => {
   return (
     <div className=' bg-[#B99E9E0F] py-2 px-4 rounded-xl'>
-      <ul className='flex justify-between items-center'>
+      <ul className='flex justify-between items-center text-[#0B0B0B] font-normal'>
         <LinkIcon path="/" label="نظرة عامة" icon={home} activeIcon={homeActive} />
         <LinkIcon path="/calendar" label="التقويم" icon={calendar} activeIcon={calendarActive} />
         <LinkIcon path="/social" label="التواصل الإجتماعي" icon={social} activeIcon={socialActive} />
