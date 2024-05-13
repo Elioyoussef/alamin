@@ -11,5 +11,9 @@ module.exports = {
     }},
   },
   plugins: [require('tailwindcss-rtl'),],
+  screens: {
+    lg: { max: "1920px" },
+    md: { max: "1000px" }
+  },
 }
 

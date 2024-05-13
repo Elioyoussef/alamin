@@ -2,7 +2,7 @@ import React from 'react'
 import Dropdown from '../components/Atoms/Dropdown'
 import HorizontalCard from '../components/Molecules/HorizontalCard'
 import Table from '../components/Organisms/Table'
-import StatusBadge from '../components/Molecules/StatusBadge'
+import InitiativeBadge from '../components/Molecules/InitiativeBadge'
 import Download from '../components/Atoms/Download'
 import clock from '../assets/icons/clock-icon.svg';
 import finished from '../assets/icons/finished-icon.svg';
@@ -11,7 +11,7 @@ const Initiatives = () => {
   const columns = [
     { Header: 'المهمة', accessor: 'title', isSortable: false },
     { Header: 'التاريخ', accessor: 'date', isSortable: true },
-    { Header: 'الحالة', accessor: 'status', render: status => <StatusBadge status={status} />, isSortable: true },
+    { Header: 'الحالة', accessor: 'status', render: status => <InitiativeBadge status={status} />, isSortable: true },
     { Header: 'تحميل', accessor: 'download', render: () => <Download />, isSortable: false },
   ];
 
@@ -32,8 +32,8 @@ const Initiatives = () => {
         <Dropdown className='max-w-[100px] w-full' />
       </div>
       <div className='flex gap-5 items-center pb-6'>
-        <HorizontalCard title='مبادرة منتهية' status='pending' number='23' percentage='-8%' icon={clock} />
-        <HorizontalCard title='مبادرة جارية' status='done' number='12' percentage='+45%' icon={finished} />
+        <HorizontalCard title='مبادرة منتهية' number='23' percentage='-8%' icon={clock} />
+        <HorizontalCard title='مبادرة جارية' number='12' percentage='+45%' icon={finished} />
       </div>
       <div>
         <Table title="المبادرات" data={data} columns={columns} />
