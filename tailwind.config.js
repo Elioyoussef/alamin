@@ -10,7 +10,8 @@ module.exports = {
       'lama': ['Lama Sans', 'sans-serif']
     }},
   },
-  plugins: [require('tailwindcss-rtl'),],
+  plugins: [require('tailwindcss-rtl')
+  ],
   screens: {
     lg: { max: "1920px" },
     md: { max: "1000px" }

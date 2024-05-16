@@ -2,15 +2,83 @@
     {
         "id": 1,
         "type": "image",
+        "subType": "استقبال",
         "title": "إجتماع وكلاء الشؤون البلدية والقروية",
         "date": "15 يناير 2024",
-        "src": "path/to/image1.jpg"
+        "src": "../assets/images/amin1.png"
     },
     {
         "id": 2,
         "type": "video",
+        "subType": "فعاليات",
+        "title": "المساعدة البلدية",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 3,
+        "type": "video",
+        "subType": "اجتماعات",
+        "title": "استقبال السفير جمهورية قيرغيرستان",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 4,
+        "type": "image",
+        "subType": "السفارات",
+        "title": "استقبال السفير جمهورية قيرغيرستان",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 5,
+        "type": "image",
+        "subType": "اجتماعات",
+        "title": "المساعدة البلدية",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 6,
+        "type": "video",
+        "subType": "اجتماعات",
+        "title": "المساعدة البلدية",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 7,
+        "type": "image",
+        "subType": "اجتماعات",
+        "title": "المساعدة البلدية",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 8,
+        "type": "image",
+        "subType": "فعاليات",
+        "title": "المساعدة البلدية",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 9,
+        "type": "image",
+        "subType": "صور شخصية",
+        "title": "المساعدة البلدية",
+        "date": "15 يناير 2024",
+        "src": "path/to/video1.mp4"
+    },
+    {
+        "id": 10,
+        "type": "image",
+        "subType": "فعاليات",
         "title": "المساعدة البلدية",
         "date": "15 يناير 2024",
         "src": "path/to/video1.mp4"
     }
+
+
 ]

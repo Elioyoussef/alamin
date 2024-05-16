@@ -8,6 +8,7 @@ import Initiatives from './pages/Initiatives';
 import Mission from './pages/Mission';
 import Social from './pages/Social';
 import Visuals from './pages/Visuals';
+import NotFoundPage from './pages/NotFoundPage';
 import Navbar from './components/Navbar';
 import PageLayout from './components/Template/PageLayout';
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/mission" element={<Mission />} />
           <Route path="/social" element={<Social />} />
           <Route path="/visuals" element={<Visuals />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </PageLayout>
     </Router>
