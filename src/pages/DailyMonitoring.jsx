@@ -1,48 +1,90 @@
-import React from 'react'
-import Dropdown from '../components/Atoms/Dropdown'
-import ClickableHorizontalCard from '../components/Molecules/ClickableHorizontalCard'
+import React, { useState } from 'react';
+import Dropdown from '../components/Atoms/Dropdown';
+import ClickableHorizontalCard from '../components/Molecules/ClickableHorizontalCard';
 import Table from '../components/Organisms/Table';
-import StatusBadge from '../components/Molecules/StatusBadge';
+import MediaBadge from '../components/Atoms/MediaBadge';
 import mediaEvent from '../assets/icons/mediaEventsUnclicked.svg';
 import trackedEvent from '../assets/icons/trackedEventsUnclicked.svg';
+import trackedEventsClicked from '../assets/icons/trackedEventsClicked.svg';
+import mediaEventsClicked from '../assets/icons/mediaEventsClicked.svg';
 import EventsList from '../components/Molecules/EventsList';
+import MonitoringContent from '../components/Molecules/MonitoringContent';
+
 const DailyMonitoring = () => {
+  const [clickedCard, setClickedCard] = useState('events');
+
   const columns = [
     { Header: 'تفاصيل الرصد', accessor: 'title', isSortable: false },
-    { Header: 'المصدر', isSortable: true },
+    { Header: 'المصدر', accessor: 'source', isSortable: true },
     { Header: 'التاريخ', accessor: 'date', isSortable: true },
-    { Header: 'تصنيفها', accessor: 'status', render: status => <StatusBadge status={status} />, isSortable: true },
+    { Header: 'تصنيفها', accessor: 'status', render: status => <MediaBadge status={status} />, isSortable: true },
   ];
-  const data = [
+
+  const dataEvents = [
     {
-      "id": 1,
-      "title": "استعادة وقت استجابة أسرع لبيانات سجل المراحل الكبرى",
-      "source": "الأحداث الاجتماعية",
-      "date": "15 أبريل 2024",
-      "status": "نشط"
+      id: 1,
+      title: "استعادة وقت استجابة أسرع لبيانات سجل المراحل الكبرى",
+      source: " محمد عبد الكريم",
+      date: "12 أبريل 2024",
+      status: "media"
     },
     {
-      "id": 2,
-      "title": "تحديث بيانات التقويم الاجتماعي",
-      "source": "التقويم الاجتماعي",
-      "date": "15 أبريل 2024",
-      "status": "نشط"
+      id: 2,
+      title: "تحديث بيانات التقويم الاجتماعي",
+      source: "محمد عبد الكريم",
+      date: "15 أبريل 2024",
+      status: "مقال صحفي"
     },
     {
-      "id": 3,
-      "title": "مراجعة مقابلات الشخصيات الكبرى",
-      "source": "مقابلات",
-      "date": "15 أبريل 2024",
-      "status": "معلق"
+      id: 3,
+      title: "مراجعة مقابلات الشخصيات الكبرى",
+      source: " محمد عبد الكريم",
+      date: "15 أبريل 2024",
+      status: "media"
     },
     {
-      "id": 4,
-      "title": "استعراض الفعاليات الأخيرة في المجتمع",
-      "source": "الأحداث الاجتماعية",
-      "date": "15 أبريل 2024",
-      "status": "مكتمل"
+      id: 4,
+      title: "استعراض الفعاليات الأخيرة في المجتمع",
+      source: " محمد عبد الكريم",
+      date: "10 أبريل 2024",
+      status: "مقال صحفي"
     }
   ];
+
+  const dataMedia = [
+    {
+      id: 1,
+      title: "تقرير إعلامي عن الاقتصاد",
+      source: " محمد عبد الكريم",
+      date: "12 أبريل 2024",
+      status: "media"
+    },
+    {
+      id: 2,
+      title: "مراجعة إعلامية للتكنولوجيا",
+      source: "محمد عبد الكريم",
+      date: "15 أبريل 2024",
+      status: "مقال صحفي"
+    },
+    {
+      id: 3,
+      title: "تحليل إعلامي للسياسة",
+      source: " محمد عبد الكريم",
+      date: "15 أبريل 2024",
+      status: "media"
+    },
+    {
+      id: 4,
+      title: "تقرير إعلامي عن الثقافة",
+      source: " محمد عبد الكريم",
+      date: "10 أبريل 2024",
+      status: "مقال صحفي"
+    }
+  ];
+
+  const handleCardClick = (type) => {
+    setClickedCard(prevType => (prevType === type ? null : type));
+  };
 
   return (
     <div className='py-6'>
@@ -57,18 +99,39 @@ const DailyMonitoring = () => {
         <div className='w-3/4'>
           <div className='flex flex-col gap-5'>
             <div className='flex items-center gap-5'>
-              <ClickableHorizontalCard title="الأحداث المرصودة" number="93" percentage="-8%" icon={trackedEvent} isClicked={true} />
-              <ClickableHorizontalCard title="التقارير الإعلامية" number="19" percentage="+45%" icon={mediaEvent} />
+              <ClickableHorizontalCard
+                title="الأحداث المرصودة"
+                number="93"
+                percentage="-8%"
+                icon={trackedEvent}
+                clickedIcon={trackedEventsClicked}
+                isClicked={clickedCard === 'events'}
+                type="events"
+                onClick={() => handleCardClick('events')}
+              />
+              <ClickableHorizontalCard
+                title="التقارير الإعلامية"
+                number="19"
+                percentage="+45%"
+                icon={mediaEvent}
+                clickedIcon={mediaEventsClicked}
+                isClicked={clickedCard === 'media'}
+                type="media"
+                onClick={() => handleCardClick('media')}
+              />
             </div>
-            <div></div>
+            <div>
+              <MonitoringContent type={clickedCard} />
+            </div>
           </div>
         </div>
       </div>
       <div>
-        <Table title="الرصد اليومي" columns={columns} data={data} />
+        {clickedCard === 'events' && <Table title="الرصد اليومي" columns={columns} data={dataEvents} />}
+        {clickedCard === 'media' && <Table title="التقارير الإعلامية" columns={columns} data={dataMedia} />}
       </div>
     </div>
   )
 }
 
-export default DailyMonitoring
+export default DailyMonitoring;

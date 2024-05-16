@@ -16,7 +16,7 @@ const Dropdown = ({ className }) => {
     return (
         <div className={`relative ${className}`}>
             <button onClick={toggleDropdown} className="px-2 py-2 bg-white border rounded-lg shadow flex items-center justify-between max-w-[100px] w-full">
-                {selectedValue} <span><img src={chevronDown} alt='chevron-down' className='w-5 h-5' /></span>
+                {selectedValue} <span className='w-5 h-5' ><img src={chevronDown} alt='chevron-down' /></span>
             </button>
             {isOpen && (
                 <div className="absolute w-full bg-white shadow-md mt-1 z-20">

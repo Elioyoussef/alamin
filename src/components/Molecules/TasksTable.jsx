@@ -40,7 +40,7 @@ const TasksTable = ({ data, columns, searchTerm, sortConfig, setSortConfig }) =>
                 {sortedData.map((item, index) => (
                     <tr key={index}>
                         {computedColumns.map(column => (
-                            <td key={column.accessor} className={`${column.width} px-6 py-4 text-wrap text-[#1D1E1D] font-semibold text-sm`}>
+                            <td key={column.accessor} className={`${column.width} px-6 py-4 text-wrap text-[#585958] font-semibold text-sm`}>
                                 {column.render ? column.render(item[column.accessor]) : item[column.accessor]}
                             </td>
                         ))}
