@@ -17,7 +17,7 @@
       url('assets/fonts/LamaSans-Bold.woff2') format('woff2'),
       url('assets/fonts/LamaSans-Bold.woff') format('woff'),
       url('assets/fonts/LamaSans-Bold.ttf') format('truetype');
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -36,16 +36,14 @@
 body{
   font-family: 'Lama Sans' !important;
 }
-.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
-  top: unset !important;
-  left: 50% !important;
-  background-color: #CFD0E1 !important;
-  bottom: 0% !important;
-  max-width: 70px !important;
-  transform: translateX(-50%) !important;
-  border-radius: 12px !important;
+.swiper-button-next::after, .swiper-button-prev::after {
+  font-size: 12px !important;
+  line-height: 26px !important;
+  background-color: black !important;
+  width: 40px !important;
+  font-weight: 900 !important;
+  height: 25px !important;
   text-align: center !important;
-}
-.swiper-pagination-bullet-active {
-  background: #32477A !important;
+  color: #fff !important;
+  border-radius: 20px !important;
 }

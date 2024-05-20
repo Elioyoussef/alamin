@@ -3,7 +3,7 @@ import NotificationList from './NotificationList';
 
 const Notifications = () => {
     return (
-        <div className="max-w-md mx-auto mt-5">
+        <div className="max-w-md mx-auto">
             <div className="flex justify-between items-center mb-4 px-4 bg-[#2C69E633] rounded-2xl py-2">
                 <div className="flex items-center space-x-2">
                     <span className="text-sm text-white bg-[#2C69E6] rounded-full px-4 py-2">6 تحديثات</span>

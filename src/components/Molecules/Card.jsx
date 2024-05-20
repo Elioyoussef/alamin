@@ -6,7 +6,7 @@ const Card = ({ title, link, children }) => {
     <div className='rounded-xl shadow-cardShadow'>
       <div className='px-5 py-5'>
         <Link className='flex justify-between items-center' to={link}>
-          <h1 className='text-2xl text-[#2E357D] font-bold'>{title}</h1>
+          <h1 className='text-2xl text-[#2E357D] font-medium'>{title}</h1>
           <span className='max-w-5'><img className='block w-full' src={leftArrow} alt={title} /></span>
         </Link>
         <div>
