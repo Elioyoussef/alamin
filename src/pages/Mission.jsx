@@ -1,27 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import endpoints from '../config/apiConfig'
 import Dropdown from '../components/Atoms/Dropdown'
+import Spinner from '../../src/components/Atoms/Spinner'
 import HorizontalCard from '../components/Molecules/HorizontalCard'
 import Table from '../components/Organisms/Table'
 import StatusBadge from '../components/Molecules/StatusBadge'
 import clock from '../assets/icons/clock-icon.svg';
 import finished from '../assets/icons/finished-icon.svg';
+
 const Mission = () => {
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const postData = {
+          paging: {
+            currentPage: 0,
+            takenRows: 6
+          }
+        };
+        const response = await axios.post(endpoints.getAllAmeenOfficeTasks, postData);
+        const newTasks = response.data.ameenOfficeTasksListDto.map(element => ({
+          id: element.id,
+          title: element.title,
+          status: element.ameenOfficeTaskStatus ? element.ameenOfficeTaskStatus.name : 'Unknown'
+        }));
+
+        setTasks(newTasks);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTasks();
+  }, []);
+
   const columns = [
     { Header: 'المهمة', accessor: 'title', isSortable: false },
-    { Header: 'الحالة', accessor: 'status', render: status => <StatusBadge status={status} />, isSortable: true },
+    { Header: 'الحالة', accessor: 'status', render: status => <StatusBadge status={status} />, isSortable: true }
   ];
 
-  const data = [
-    { id: 1, title: "متابعة مهام الللجان ورفع بالتوصيات والمقترحات", status: "done" },
-    { id: 2, title: "متابعة مهام الللجان ورفع بالتوصيات والمقترحات", status: "done" },
-    { id: 3, title: "تنفيذ تغريدة بمناسبة يوم العلم السعودي", status: "pending" },
-    { id: 4, title: "اعداد تقرير اعلامي عن اخر تغريدة ", status: "pending" },
-    { id: 5, title: "متابعة مهام الللجان ورفع بالتوصيات والمقترحات", status: "pending" },
-    { id: 6, title: "تنفيذ تغريدة بمناسبة يوم العلم السعودي", status: "done" },
-    { id: 7, title: "مهمة سبعة", status: "done" },
-    { id: 8, title: "مهمة ثمانية", status: "pending" },
-    { id: 9, title: "مهمة تسعة", status: "done" }
-  ];
+  if (loading) return <Spinner />;
+  if (error) return <div>Error: {error}</div>;
+
   return (
     <div>
       <div className='py-6 flex justify-end'>
@@ -32,11 +59,10 @@ const Mission = () => {
         <HorizontalCard title='مهمة منجزة' status='done' number='45' percentage='+45%' icon={finished} />
       </div>
       <div>
-        <Table title="سجل مهام المكتب الإعلامي لسمو الأمين" data={data} columns={columns} />
+        <Table title="سجل مهام المكتب الإعلامي لسمو الأمين" data={tasks} columns={columns} />
       </div>
     </div>
-
   )
 }
 
-export default Mission
+export default Mission;

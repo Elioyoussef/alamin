@@ -3,6 +3,8 @@ import Dropdown from '../components/Atoms/Dropdown';
 import ClickableHorizontalCard from '../components/Molecules/ClickableHorizontalCard';
 import Table from '../components/Organisms/Table';
 import MediaBadge from '../components/Atoms/MediaBadge';
+import EventsBadge from '../components/Molecules/EventsBadge';
+import Download from '../components/Atoms/Download';
 import mediaEvent from '../assets/icons/mediaEventsUnclicked.svg';
 import trackedEvent from '../assets/icons/trackedEventsUnclicked.svg';
 import trackedEventsClicked from '../assets/icons/trackedEventsClicked.svg';
@@ -17,9 +19,14 @@ const DailyMonitoring = () => {
     { Header: 'تفاصيل الرصد', accessor: 'title', isSortable: false },
     { Header: 'المصدر', accessor: 'source', isSortable: true },
     { Header: 'التاريخ', accessor: 'date', isSortable: true },
-    { Header: 'تصنيفها', accessor: 'status', render: status => <MediaBadge status={status} />, isSortable: true },
+    { Header: 'تصنيفها', accessor: 'status', render: classification => <MediaBadge classification={classification} />, isSortable: true },
   ];
-
+  const columns2 = [
+    { Header: 'عنوان الخبر', accessor: 'title', isSortable: false },
+    { Header: 'الحالة', accessor: 'classification', render: classification => <EventsBadge classification={classification} />, isSortable: true },
+    { Header: 'تصنيفها', accessor: 'status', render: status => <MediaBadge status={status} />, isSortable: true },
+    { Header: 'تحميل', accessor: 'download', render: () => <Download />, isSortable: false }
+  ];
   const dataEvents = [
     {
       id: 1,
@@ -55,30 +62,26 @@ const DailyMonitoring = () => {
     {
       id: 1,
       title: "تقرير إعلامي عن الاقتصاد",
-      source: " محمد عبد الكريم",
-      date: "12 أبريل 2024",
-      status: "media"
+      status: "تواصل اجتماعي",
+      classification: "انتهى"
     },
     {
       id: 2,
       title: "مراجعة إعلامية للتكنولوجيا",
-      source: "محمد عبد الكريم",
-      date: "15 أبريل 2024",
-      status: "مقال صحفي"
+      status: "media",
+      classification: "جاري"
     },
     {
       id: 3,
       title: "تحليل إعلامي للسياسة",
-      source: " محمد عبد الكريم",
-      date: "15 أبريل 2024",
-      status: "media"
+      status: "تواصل اجتماعي",
+      classification: "انتهى"
     },
     {
       id: 4,
       title: "تقرير إعلامي عن الثقافة",
-      source: " محمد عبد الكريم",
-      date: "10 أبريل 2024",
-      status: "مقال صحفي"
+      status: "media",
+      classification: "جاري"
     }
   ];
 
@@ -128,7 +131,7 @@ const DailyMonitoring = () => {
       </div>
       <div>
         {clickedCard === 'events' && <Table title="الرصد اليومي" columns={columns} data={dataEvents} />}
-        {clickedCard === 'media' && <Table title="التقارير الإعلامية" columns={columns} data={dataMedia} />}
+        {clickedCard === 'media' && <Table title="التقارير الإعلامية" columns={columns2} data={dataMedia} />}
       </div>
     </div>
   )

@@ -1,31 +1,58 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import endpoints from '../config/apiConfig'
+import moment from 'moment'
 import Dropdown from '../components/Atoms/Dropdown'
+import Spinner from '../../src/components/Atoms/Spinner'
 import HorizontalCard from '../components/Molecules/HorizontalCard'
 import Table from '../components/Organisms/Table'
 import InitiativeBadge from '../components/Molecules/InitiativeBadge'
 import Download from '../components/Atoms/Download'
 import clock from '../assets/icons/clock-icon.svg';
 import finished from '../assets/icons/finished-icon.svg';
-
 const Initiatives = () => {
+  const [initiatives, setInitiatives] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  moment.locale('ar');
+  useEffect(() => {
+    const fetchInitiatives = async () => {
+      setLoading(true);
+      try {
+        const postData = {
+          paging: {
+            currentPage: 0,
+            takenRows: 6
+          }
+        };
+        const response = await axios.post(endpoints.getAllInitiatives, postData);
+        const newInitiatives = response.data.initiativesListDto.map(element => ({
+          id: element.id,
+          title: element.title,
+          status: element.initiativesStatus ? element.initiativesStatus.name : 'Unknown',
+          dateM: moment(element.dateM).format('LL')
+        }));
+        setInitiatives(newInitiatives);
+        setLoading(false);
+      }
+
+      catch (err) {
+        console.error('err:', err);
+        setError(err);
+        setLoading(false);
+      }
+    };
+    fetchInitiatives();
+  }, [])
   const columns = [
     { Header: 'المهمة', accessor: 'title', isSortable: false },
-    { Header: 'التاريخ', accessor: 'date', isSortable: true },
+    { Header: 'التاريخ', accessor: 'dateM', isSortable: true },
     { Header: 'الحالة', accessor: 'status', render: status => <InitiativeBadge status={status} />, isSortable: true },
     { Header: 'تحميل', accessor: 'download', render: () => <Download />, isSortable: false },
   ];
 
-  const data = [
-    { id: 1, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "done" },
-    { id: 2, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "14 أبريل 2024", status: "done" },
-    { id: 3, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "pending" },
-    { id: 4, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "pending" },
-    { id: 5, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "pending" },
-    { id: 6, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "done" },
-    { id: 7, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "done" },
-    { id: 8, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "pending" },
-    { id: 9, title: "استقبال وفد سغارة اسبانيا وتواجد سفير اسبانيا لدى المملكة العربية السعودي وذلك للاطلاع ومناقشة كل مايهم.", date: "15 أبريل 2024", status: "done" }
-  ];
+  if (loading) return <Spinner />;
+  if (error) return <div>Error loading initiatives: {error.message}</div>;
   return (
     <div>
       <div className='py-6 flex justify-end'>
@@ -36,7 +63,7 @@ const Initiatives = () => {
         <HorizontalCard title='مبادرة جارية' number='12' percentage='+45%' icon={finished} />
       </div>
       <div>
-        <Table title="المبادرات" data={data} columns={columns} />
+        <Table title="المبادرات" data={initiatives} columns={columns} />
       </div>
     </div>
   )

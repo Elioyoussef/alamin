@@ -1,7 +1,7 @@
 import React from 'react'
 import LinkIcon from './Molecules/LinkIcon'
-import calendar from '../assets/icons/calendar.svg';
-import calendarActive from '../assets/icons/calendarActive.svg';
+// import calendar from '../assets/icons/calendar.svg';
+// import calendarActive from '../assets/icons/calendarActive.svg';
 import committees from '../assets/icons/committees.svg';
 import committeesActive from '../assets/icons/committeesActive.svg';
 import heartHandActive from '../assets/icons/heartHandActive.svg';
@@ -21,7 +21,7 @@ const Navbar = () => {
     <div className=' bg-[#B99E9E0F] py-2 px-4 rounded-xl'>
       <ul className='flex justify-between items-center text-[#0B0B0B] font-normal'>
         <LinkIcon path="/" label="نظرة عامة" icon={home} activeIcon={homeActive} />
-        <LinkIcon path="/calendar" label="التقويم" icon={calendar} activeIcon={calendarActive} />
+        {/* <LinkIcon path="/calendar" label="التقويم" icon={calendar} activeIcon={calendarActive} /> */}
         <LinkIcon path="/social" label="التواصل الإجتماعي" icon={social} activeIcon={socialActive} />
         <LinkIcon path="/mission" label="المهام" icon={mission} activeIcon={missionActive} />
         <LinkIcon path="/daily-monitoring" label="الرصد اليومي" icon={monitoring} activeIcon={monitoringActive} />

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import notFound from '../../assets/images/notFound.svg';
 const TasksTable = ({ data, columns, searchTerm, sortConfig, setSortConfig }) => {
     const filteredData = data.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -17,7 +17,13 @@ const TasksTable = ({ data, columns, searchTerm, sortConfig, setSortConfig }) =>
     const handleSort = (key) => {
         setSortConfig({ key, direction: sortConfig.key === key && sortConfig.direction === 'ascending' ? 'descending' : 'ascending' });
     };
-
+    if (sortedData.length === 0) {
+        return (
+            <div className="max-w-[200px] mx-auto">
+                <img src={notFound} alt="not found" className="w-full block" />
+            </div>
+        );
+    }
     return (
         <table className="min-w-full text-sm divide-y divide-gray-300">
             <thead className="bg-[#FCFCFC]">
